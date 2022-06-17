@@ -1,7 +1,7 @@
 # %%
 import torch
 import pytorch_lightning as pl
-from util import *
+from utils.math_utils import *
 
 # %%
 sequence_length = 3
