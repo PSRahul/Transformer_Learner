@@ -1,6 +1,3 @@
-from importlib.metadata import SelectableGroups
-from math import fabs
-from multiprocessing import set_forkserver_preload
 from torch.utils.data import Dataset
 import numpy as np
 import torch
@@ -18,21 +15,28 @@ class AnomalyDataset(Dataset):
         self.num_class=labels.max()+1
         # Reshape into [Num of Classes, Image per classes]
         self.image_index_with_labels=torch.argsort(self.labels).reshape(self.num_class,-1)
-        
+        print("Image Index with Labels",self.image_index_with_labels.shape)
         if not train:
             self.test_data=self.create_test_set()
     
 
-    def create_test_set():
+    def create_test_set(self):
         test_data=[]
-        
+        num_images= self.image_features.shape[0]
+        test_data=[self.sample_image_index(self.labels[idx]) for idx in range(num_images)]
+        test_data=torch.stack(test_data,dim=0)
+        return test_data
 
     def sample_image_index(self,anomaly_class):
-        correct_class=np.random.randint(self.num_class)
-        while correct_class==anomaly_class:
-            correct_class=np.random.randint(self.num_class)
+        print(anomaly_class)
+        correct_class=np.random.randint(self.num_class-1)
+        print(correct_class)
+        if correct_class>=anomaly_class:
+            correct_class+=1
 
         correct_image_index=np.random.choice(self.image_index_with_labels[1],size=self.set_size-1,replace=False)
+        print(correct_image_index)
+        print(self.image_index_with_labels.shape)
         correct_image_index=self.image_index_with_labels[correct_class,correct_image_index]
         return correct_image_index
 
@@ -44,7 +48,10 @@ class AnomalyDataset(Dataset):
 
         if self.train:
             image_index=self.sample_image_index(self.labels[index])
-        return super().__getitem__(index)
+        else:
+            image_index=self.test_sets[index]
 
-train_features, train_labels = get_train_val_set (train=False)
-anomaly_dataset=AnomalyDataset(train_features,train_labels)
+#train_features, train_labels = get_train_val_set (train=True)
+test_features, test_labels = get_train_val_set (train=False)
+
+anomaly_dataset=AnomalyDataset(test_features, test_labels ,train=False)
