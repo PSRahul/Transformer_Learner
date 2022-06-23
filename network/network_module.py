@@ -1,5 +1,3 @@
-from re import L
-from turtle import forward
 import pytorch_lightning as pl
 import torch.nn as nn
 from network.position_encoding import PositionalEncoding
