@@ -22,6 +22,6 @@ class AttentionBlock(nn.Module):
     def forward(self, x):
         x = self.layer_norm_1(x)
         attn_output, attn_output_weights = self.attention(x, x, x)
-        x = x+attn_output
-        x = x+self.linear_layer(self.layer_norm_2(x))
+        x = x + attn_output
+        x = x + self.linear_layer(self.layer_norm_2(x))
         return x
