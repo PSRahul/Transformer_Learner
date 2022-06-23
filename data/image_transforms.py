@@ -20,10 +20,6 @@ def image_to_patches(image, patch_size, flatten_channels=True):
 
 cifar_dataset = CIFARDataset()
 train_dataset = cifar_dataset.get_train()
-
-
-print(len(train_dataset))
-
 for idx in train_dataset:
     print(idx[0].shape)
     image = idx[0]
