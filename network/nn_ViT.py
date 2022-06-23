@@ -58,6 +58,7 @@ class VisionTransformer(nn.Module):
         return output
 
 
+"""
 vision_transformer = VisionTransformer(embedding_dim=12, hidden_dim=24, num_channels=3,
                                        num_heads=4, num_layers=2, num_classes=10, patch_size=2,
                                        num_patches=256, dropout=0)
@@ -69,3 +70,4 @@ for idx in train_dataset:
     break
 
 x = vision_transformer.forward(image)
+"""

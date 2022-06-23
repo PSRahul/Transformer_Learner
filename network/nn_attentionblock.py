@@ -1,4 +1,3 @@
-from this import s
 import torch.nn as nn
 
 

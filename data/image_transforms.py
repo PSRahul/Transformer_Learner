@@ -19,6 +19,7 @@ def image_to_patches(image, patch_size, flatten_channels=True):
     return image
 
 
+"""
 cifar_dataset = CIFARDataset()
 train_dataset = cifar_dataset.get_train()
 for idx in train_dataset:
@@ -26,3 +27,4 @@ for idx in train_dataset:
     break
 
 image_patch = image_to_patches(image, patch_size=2)
+"""

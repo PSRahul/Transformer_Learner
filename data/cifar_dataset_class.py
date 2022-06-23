@@ -1,5 +1,3 @@
-from cgi import test
-from unicodedata import normalize
 from torchvision import transforms
 import numpy as np
 from torchvision.datasets import CIFAR10
@@ -43,4 +41,3 @@ class CIFARDataset():
         return DataLoader(self.test_set, batch_size=128, shuffle=True, num_workers=8)
 
 
-cifar_dataset = CIFARDataset()
