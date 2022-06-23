@@ -1,7 +1,7 @@
 import pytorch_lightning as pl
-import network.nn_ViT as VisionTransformer
+from network.nn_ViT import VisionTransformer
 import torch.optim as optim
-import torch.functional as F
+import torch.nn.functional as F
 
 
 class Vision_Transformer_Module(pl.LightningModule):

@@ -12,7 +12,7 @@ def train_models(**kwargs):
     trainer = pl.Trainer(
         default_root_dir="/home/psrahul/MasterThesis/repo/ViT_Learner/checkpoints/",
         gpus=1,
-        max_epochs=10,
+        max_epochs=100,
         callbacks=[ModelCheckpoint(dirpath="/home/psrahul/MasterThesis/repo/ViT_Learner/checkpoints/models/",
                                    monitor="val_acc", mode="max"),
                    LearningRateMonitor("epoch")],
@@ -30,17 +30,17 @@ def train_models(**kwargs):
 def main():
 
     train_models(model_kwargs={
-        'embedding_dim': 256,
-        'hidden_dim': 512,
+        'embedding_dim': 64,
+        'hidden_dim': 32,
         'num_heads': 8,
         'num_layers': 6,
-        'patch_size': 4,
+        'patch_size': 16,
         'num_channels': 3,
-        'num_patches': 64,
+        'num_patches': 16,
         'num_classes': 10,
-        'dropout': 0.2
+        'dropout': 0
     },
-        lr=3e-4)
+        lr=5e-4)
 
 
 if __name__ == "__main__":

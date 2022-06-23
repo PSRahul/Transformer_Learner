@@ -28,15 +28,11 @@ class AnomalyDataset(Dataset):
         return test_data
 
     def sample_image_index(self,anomaly_class):
-        print(anomaly_class)
         correct_class=np.random.randint(self.num_class-1)
-        print(correct_class)
         if correct_class>=anomaly_class:
             correct_class+=1
 
         correct_image_index=np.random.choice(self.image_index_with_labels[1],size=self.set_size-1,replace=False)
-        print(correct_image_index)
-        print(self.image_index_with_labels.shape)
         correct_image_index=self.image_index_with_labels[correct_class,correct_image_index]
         return correct_image_index
 

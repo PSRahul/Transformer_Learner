@@ -36,8 +36,8 @@ class VisionTransformer(nn.Module):
         self.pos_embedding = nn.Parameter(
             torch.randn(1, 1 + num_patches, embedding_dim))
 
-        print("Positional Embedding", self.pos_embedding.shape)
-        print("Class Token", self.cls_token.shape)
+        #print("Positional Embedding", self.pos_embedding.shape)
+        #print("Class Token", self.cls_token.shape)
 
     def forward(self, x):
         x = image_to_patches(x, self.patch_size)
